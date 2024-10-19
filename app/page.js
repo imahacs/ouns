@@ -1,10 +1,8 @@
-import Footer from "./component/footer/footer"
-import Header from "./component/header/header"
+import Header from "@/components/Header";
+
 export default function Home() {
   return (
-    <>
-    هيلو
-    <Footer />
-    </>
+    <Header />
   );
 }
+ 
