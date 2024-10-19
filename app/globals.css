@@ -2,7 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+@layer base {
+  html {
+    scroll-behavior: smooth; 
+  }
+}
+
+@layer components {
+  .btn {
+    @apply bg-black text-white px-4 py-2 rounded-lg font-medium inline-flex items-center justify-center tracking-tight;
+  }
+  .btn-primary {
+    @apply bg-black text-white;
+  }
+
+  .btn-text {
+    @apply text-black bg-transparent;
+  }
+
+  .icon-ticker-image {
+    @apply h-8 w-auto;
+  }
+
+  .tag {
+    @apply text-sm inline-flex border border-[#222]/10 px-3 py-1 rounded-lg tracking-tight;
+  }
+  
+}
+
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -43,4 +71,4 @@ a {
   html {
     color-scheme: dark;
   }
-}
+} */
