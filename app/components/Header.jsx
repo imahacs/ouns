@@ -2,10 +2,17 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import logo from '../assets/logo.svg'; 
-import { MdMenu } from 'react-icons/md'; 
+import { MdMenu } from 'react-icons/md';
+import { useRouter } from 'next/navigation'; 
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false); 
+  const router = useRouter();
+
+  const handleButtonClick = () => {
+    router.push('/assessment'); 
+  };
+
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -25,7 +32,12 @@ const Header = () => {
             <a href="#about">حول</a>
           <a href="#services">الخدمات</a>
           <a href="#how-it-works">طريقة العمل</a>
-              <button className='bg-black text-white px-4 py-2 rounded-lg font-medium inline-flex align-center justify-center tracking-tight'>احصل على الخدمة مجاناً</button>
+              <button 
+              className='bg-black text-white px-4 py-2 rounded-lg font-medium inline-flex align-center justify-center tracking-tight'
+              onClick={handleButtonClick}
+              >
+                احصل على الخدمة مجاناً
+                </button>
             </nav>
           </div>
         </div>
