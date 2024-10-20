@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation"; // Import Next.js router for navigation
-import Image from "next/image"; // Import Next.js Image component
+import Image from "next/image"; 
+import Footer from "./../components/Footer";
 
 const CameraCheck = () => {
   const [isRecording, setIsRecording] = useState(false);
@@ -103,32 +104,33 @@ const CameraCheck = () => {
   };
 
   return (
+    <>
     <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-blue-100 to-white">
-      <div className="w-3/4 flex rounded-xl shadow-lg overflow-hidden bg-white">
-        <div className="w-1/2 p-12 flex flex-col justify-center">
-          <h1 className="text-3xl font-bold text-gray-800 mb-4"> تحقق من الكاميرا</h1>
-          <p className="text-gray-600 mb-8">
+      <div className="w-full md:w-3/4 flex flex-col md:flex-row rounded-xl shadow-lg overflow-hidden bg-white m-4">
+        <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-center">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4"> تحقق من الكاميرا</h1>
+          <p className="text-gray-600 mb-4">
             يرجى التحقق من الكاميرا الخاصة بك وتفعيل الخيار للسماح لها بالوصول. انقر على زر التحقق. بمجرد أن يتضح أن الكاميرا تعمل بشكل جيد، يمكنك المتابعة.
           </p>
           <div className="flex space-x-4">
             {!isRecording ? (
               <button
                 onClick={startRecording}
-                className="px-36 py-3 mt-36 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600"
+                className="px-8 md:px-36 py-3 mt-4 md:mt-36 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition duration-200"
               >
                 تحقق 
               </button>
             ) : (
               <button
                 onClick={continueToNextPage}
-                className="px-36 py-3 mt-36 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600"
+                className="px-8 md:px-36 py-3 mt-4 md:mt-36 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition duration-200"
               >
                 المتابعة
               </button>
             )}
           </div>
         </div>
-        <div className="w-1/2 p-12 flex flex-col justify-center items-center">
+        <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-center items-center">
           {!isRecording ? (
             // Show image when not recording
             <Image 
@@ -144,6 +146,8 @@ const CameraCheck = () => {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

@@ -1,5 +1,4 @@
 import { Cairo } from '@next/font/google';
-import { twMerge } from 'tailwind-merge';
 import "./globals.css";
 
 const cairoFont = Cairo({
@@ -8,14 +7,16 @@ const cairoFont = Cairo({
 });
 
 export const metadata = {
-  title: "أنس",
+  title: "ابدأ",
   description: "أنس لكي تأنس",
 };
 
-export default function RootLayout({ children }) { 
+export default function RootLayout({ children }) {
   return (
     <html lang="ar" dir="rtl">
-      <body className={twMerge(cairoFont.className, "antialoiased bg-[#EAEEFE]")}>
+      <body
+        className={`${cairoFont.className} antialiased bg-gradient-to-r from-blue-100 to-white min-h-screen`}
+      >
         {children}
       </body>
     </html>

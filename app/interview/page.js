@@ -2,6 +2,8 @@
 
 import React, { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Footer from "./../components/Footer";
+
 
 const Interview = () => {
   const [mediaRecorder, setMediaRecorder] = useState(null);
@@ -87,46 +89,45 @@ const Interview = () => {
       setVideoUrl(""); // Reset video URL for the next question
       setTimer(60); // Reset timer for the next question
     } else {
-      router.push("/thank-you"); // Redirect to the Thank You page after the last question
+      router.push("/thank-you");
     }
   };
-
-  // Retake video (reset state)
   const retakeVideo = () => {
     setVideoUrl("");
     setTimer(60);
-    setupCamera(); // Set up camera again for retake
+    setupCamera(); 
   };
 
   return (
+    <>
     <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-blue-100 to-white">
-      <div className="w-3/4 flex flex-col rounded-xl shadow-lg overflow-hidden bg-white p-6 space-y-4">
-        <h1 className="text-center text-xl font-bold">التشخيص الافتراضي </h1>
-        <p className="text-center">يرجى الإجابة على السؤال التالي:</p>
-        <div className="p-4 bg-gray-100 rounded-lg text-center">
-          <p className="text-lg">{questions[currentQuestionIndex]}</p>
+      <div className="w-full sm:w-4/5 md:w-3/4 lg:w-1/2 flex flex-col rounded-xl shadow-lg overflow-hidden bg-white p-4 sm:p-6 md:p-8 lg:p-10 space-y-4 m-4 sm:m-6">
+        <h1 className="text-center text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+          التشخيص الافتراضي
+        </h1>
+        <p className="text-center text-sm sm:text-base md:text-lg lg:text-xl">
+          يرجى الإجابة على السؤال التالي:
+        </p>
+        <div className="p-3 sm:p-4 bg-gray-100 rounded-lg text-center">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl">
+            {questions[currentQuestionIndex]}
+          </p>
         </div>
-
-        {/* Display Recorded Video or Live Camera Feed */}
         {videoUrl ? (
-          // Show recorded video if available
           <video
             src={videoUrl}
             controls
-            className="w-full h-64 bg-black rounded-lg mt-4"
+            className="w-full h-48 sm:h-64 bg-black rounded-lg mt-4"
           />
         ) : (
-          // Show live camera feed when not recorded, with a flip effect
           <video
             ref={videoRef}
-            className="w-full h-64 bg-black rounded-lg transform scale-x-[-1]"
+            className="w-full h-48 sm:h-64 bg-black rounded-lg transform scale-x-[-1]"
             autoPlay
             muted
           />
         )}
-
-        {/* Timer and recording controls */}
-        <div className="text-center text-lg font-semibold">
+        <div className="text-center text-sm sm:text-base md:text-lg font-semibold">
           {recording ? `جاري التسجيل... ${timer}ث` : "ليس في وضع التسجيل"}
         </div>
 
@@ -134,7 +135,7 @@ const Interview = () => {
           {!recording && !videoUrl && (
             <button
               onClick={startRecording}
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              className="px-4 sm:px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
             >
               ابدأ التسجيل
             </button>
@@ -142,25 +143,24 @@ const Interview = () => {
           {recording && (
             <button
               onClick={stopRecording}
-              className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+              className="px-4 sm:px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
             >
               أوقف التسجيل
             </button>
           )}
         </div>
 
-        {/* Retake and Submit buttons */}
         {videoUrl && (
-          <div className="flex justify-center space-x-4">
+          <div className="flex justify-center">
             <button
               onClick={retakeVideo}
-              className="text-blue-500 m-5 hover:underline"
+              className="text-blue-500 m-3 sm:m-5 hover:underline"
             >
               إعادة التصوير
             </button>
             <button
               onClick={handleSubmit}
-              className="px-8 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              className="px-6  py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
             >
               تقديم
             </button>
@@ -168,6 +168,8 @@ const Interview = () => {
         )}
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 
