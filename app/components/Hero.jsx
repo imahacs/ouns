@@ -9,7 +9,7 @@ const Hero = ({ id }) => {
   const router = useRouter();
 
   const handleButtonClick = () => {
-    router.push("/assessment");
+    router.push("/onboarding");
   };
 
   return (

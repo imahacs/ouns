@@ -10,7 +10,7 @@ const Header = () => {
   const router = useRouter();
 
   const handleButtonClick = () => {
-    router.push('/assessment'); 
+    router.push('/onboarding'); 
   };
 
 
