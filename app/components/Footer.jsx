@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="relative inline-flex p-0.5">
           {/* Gradient Background */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#E6E6FA] to-[#B0E0E6] rounded-lg"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#E6E6FA] to-[#EAEFFA] rounded-lg"></div>
 
           {/* Your Logo/Image */}
           <Image src={logo} alt="Logo" height={40} className="relative z-10" />
