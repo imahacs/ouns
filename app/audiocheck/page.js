@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation"; // Import Next.js router for navigation
-import Image from "next/image"; // s
+import Image from "next/image"; 
 import Footer from "./../components/Footer";
-import { FaMicrophone, FaVolumeUp } from 'react-icons/fa'; 
+import { FaMicrophone } from 'react-icons/fa'; 
 import { audio } from "../../public/assets/assets";
 
 
@@ -136,7 +136,7 @@ const AudioCheck = () => {
             )}
           </div>
         </div>
-        <div className="md:w-1/2 p-6 flex flex-col justify-center items-center ">
+        <div className="md:w-1/2 p-6 flex flex-col justify-center items-center">
           {!isRecording ? (
             <Image
               src={audio}
@@ -146,12 +146,15 @@ const AudioCheck = () => {
               className="rounded-lg"
             />
           ) : (
-            <canvas
-              ref={canvasRef}
-              width={500}
-              height={300}
-              className="rounded-lg"
-            />
+            <div className="flex justify-center items-center w-full">
+              <canvas
+                ref={canvasRef}
+                width={500}
+                height={300}
+                className="rounded-lg"
+                style={{ padding: '12px', margin: '0 auto' }} 
+              />
+            </div>
           )}
         </div>
       </div>

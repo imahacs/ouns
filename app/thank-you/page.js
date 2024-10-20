@@ -9,7 +9,7 @@ const ThankYou = () => {
   const router = useRouter();
 
   const downloadReport = () => {
-    const reportUrl = "/assets/report.pdf";  // المسار الصحيح هنا
+    const reportUrl = "/assets/repoet.pdf"; // Updated path
     const link = document.createElement('a');
     link.href = reportUrl;
     link.download = 'report.pdf';
