@@ -3,6 +3,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import Footer from "./../components/Footer";
+import { thx } from "../../public/assets/assets";
 
 const ThankYou = () => {
   const router = useRouter();
@@ -23,7 +24,7 @@ const ThankYou = () => {
       <div className="w-full sm:w-4/5 md:w-3/4 lg:w-1/2 flex flex-col rounded-xl shadow-lg overflow-hidden bg-white p-4 sm:p-6 md:p-10 space-y-4 text-center m-6">
         <div className="flex justify-center items-center">
           <Image 
-            src="/images/thanku.png"
+            src={thx}
             alt="Thank you"
             width={100}
             height={90}
