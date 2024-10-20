@@ -1,5 +1,5 @@
 import { Cairo } from '@next/font/google';
-import "./globals.css";
+import "../globals.css";
 
 const cairoFont = Cairo({
   weight: ["400", "700"], 
