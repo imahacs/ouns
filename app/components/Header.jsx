@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import logo from '../assets/logo.svg'; 
+import logo from '../../public/assets/logo.svg'; 
 import { MdMenu } from 'react-icons/md';
 import { useRouter } from 'next/navigation'; 
 

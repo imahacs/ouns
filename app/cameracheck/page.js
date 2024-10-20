@@ -1,23 +1,24 @@
 "use client"; // Add this line to make it a Client Component
 
 import React, { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation"; // Import Next.js router for navigation
-import Image from "next/image"; 
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 import Footer from "./../components/Footer";
+// Import icons from Font Awesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCamera, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const CameraCheck = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [videoStream, setVideoStream] = useState(null);
-  const [isCameraGood, setIsCameraGood] = useState(false); // New state for camera check
+  const [isCameraGood, setIsCameraGood] = useState(false);
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
-  const router = useRouter(); // Use Next.js router for page navigation
+  const router = useRouter();
 
   useEffect(() => {
     if (isRecording && videoStream) {
       const canvas = canvasRef.current;
-
-      // Ensure the canvas is available
       if (!canvas) {
         console.error("Canvas reference is null");
         return;
@@ -28,39 +29,32 @@ const CameraCheck = () => {
       video.srcObject = videoStream;
       video.play();
 
-      // Set the canvas dimensions based on the video stream
       video.onloadedmetadata = () => {
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
-        draw(); // Start drawing only after metadata is loaded
+        draw();
       };
 
       const draw = () => {
-        // Check if the context is available
         if (ctx) {
-          ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas before drawing
-          
-          // Flip the canvas horizontally
-          ctx.save(); // Save the current state
-          ctx.scale(-1, 1); // Flip horizontally
-          ctx.translate(-canvas.width, 0); // Translate to the correct position
-
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.save();
+          ctx.scale(-1, 1);
+          ctx.translate(-canvas.width, 0);
           ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-          
-          ctx.restore(); // Restore the original state
+          ctx.restore();
 
-          // Check if the video is good (e.g., if the image is clear)
           const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
           const data = imageData.data;
           let totalBrightness = 0;
-          
+
           for (let i = 0; i < data.length; i += 4) {
-            const brightness = (data[i] + data[i + 1] + data[i + 2]) / 3; // Calculate average brightness
+            const brightness = (data[i] + data[i + 1] + data[i + 2]) / 3;
             totalBrightness += brightness;
           }
 
           const averageBrightness = totalBrightness / (data.length / 4);
-          setIsCameraGood(averageBrightness > 100); // Camera is good if brightness is above threshold
+          setIsCameraGood(averageBrightness > 100);
 
           animationRef.current = requestAnimationFrame(draw);
         } else {
@@ -99,54 +93,56 @@ const CameraCheck = () => {
 
   const continueToNextPage = () => {
     if (isCameraGood) {
-      router.push("/waywork"); // Navigate to the next page
+      router.push("/waywork");
     }
   };
 
   return (
     <>
-    <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-blue-100 to-white">
-      <div className="w-full md:w-3/4 flex flex-col md:flex-row rounded-xl shadow-lg overflow-hidden bg-white m-4">
-        <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-center">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4"> تحقق من الكاميرا</h1>
-          <p className="text-gray-600 mb-4">
-            يرجى التحقق من الكاميرا الخاصة بك وتفعيل الخيار للسماح لها بالوصول. انقر على زر التحقق. بمجرد أن يتضح أن الكاميرا تعمل بشكل جيد، يمكنك المتابعة.
-          </p>
-          <div className="flex space-x-4">
+      <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-blue-100 to-white p-4">
+        <div className="w-full max-w-4xl flex flex-col md:flex-row rounded-xl shadow-lg overflow-hidden bg-white border border-gray-300">
+          <div className="md:w-1/2 p-6 flex flex-col justify-center">
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 flex items-center">
+              تحقق من الكاميرا
+              <FontAwesomeIcon icon={faCamera} className="mr-2 text-blue-500" />
+            </h1>
+            <p className="text-gray-600 mb-4">
+              يرجى التحقق من الكاميرا الخاصة بك وتفعيل الخيار للسماح لها بالوصول. انقر على زر التحقق. بمجرد أن يتضح أن الكاميرا تعمل بشكل جيد، يمكنك المتابعة.
+            </p>
+            <div className="flex space-x-4">
+              {!isRecording ? (
+                <button
+                  onClick={startRecording}
+                  className="md:px-28 md:py-1 mt-6 md:mt-36 px-24 py-1 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition duration-200 flex items-center justify-center"
+                >
+                  تحقق
+                </button>
+              ) : (
+                <button
+                  onClick={continueToNextPage}
+                  className="md:px-28 md:py-1 mt-6 md:mt-36 px-24 py-1 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600 transition duration-200 flex items-center justify-center"
+                >
+                  المتابعة
+                </button>
+              )}
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-center items-center">
             {!isRecording ? (
-              <button
-                onClick={startRecording}
-                className="px-8 md:px-36 py-3 mt-4 md:mt-36 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition duration-200"
-              >
-                تحقق 
-              </button>
+              <Image 
+                src="/images/cam.png"
+                alt="Camera not active"
+                width={500}
+                height={300}
+                className="w-full h-auto"
+              />
             ) : (
-              <button
-                onClick={continueToNextPage}
-                className="px-8 md:px-36 py-3 mt-4 md:mt-36 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition duration-200"
-              >
-                المتابعة
-              </button>
+              <canvas ref={canvasRef} className="w-full h-50 mb-4 border border-gray-300 shadow-md"></canvas>
             )}
           </div>
         </div>
-        <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-center items-center">
-          {!isRecording ? (
-            // Show image when not recording
-            <Image 
-              src="/images/cam.png" // Use relative path for Image component
-              alt="Camera not active"
-              width={500} // Set appropriate width
-              height={300} // Set appropriate height
-              className="w-full h-auto"
-            />
-          ) : (
-            <canvas ref={canvasRef} className="w-full h-50 mb-4"></canvas>
-          )}
-        </div>
       </div>
-    </div>
-    <Footer />
+      <Footer />
     </>
   );
 };

@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { MdArrowForward } from "react-icons/md";
-import { header } from "../assets/assets";
+import { header } from "../../public/assets/assets";
 import { useRouter } from "next/navigation";
 
 const Hero = ({ id }) => {

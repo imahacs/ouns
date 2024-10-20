@@ -3,6 +3,7 @@
 import React, { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Footer from "./../components/Footer";
+import { FaVideo, FaStopCircle } from "react-icons/fa";
 
 
 const Interview = () => {
@@ -92,6 +93,7 @@ const Interview = () => {
       router.push("/thank-you");
     }
   };
+  
   const retakeVideo = () => {
     setVideoUrl("");
     setTimer(60);
@@ -99,77 +101,79 @@ const Interview = () => {
   };
 
   return (
-    <>
-    <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-blue-100 to-white">
-      <div className="w-full sm:w-4/5 md:w-3/4 lg:w-1/2 flex flex-col rounded-xl shadow-lg overflow-hidden bg-white p-4 sm:p-6 md:p-8 lg:p-10 space-y-4 m-4 sm:m-6">
-        <h1 className="text-center text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
-          التشخيص الافتراضي
-        </h1>
-        <p className="text-center text-sm sm:text-base md:text-lg lg:text-xl">
-          يرجى الإجابة على السؤال التالي:
-        </p>
-        <div className="p-3 sm:p-4 bg-gray-100 rounded-lg text-center">
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl">
-            {questions[currentQuestionIndex]}
-          </p>
-        </div>
-        {videoUrl ? (
-          <video
-            src={videoUrl}
-            controls
-            className="w-full h-48 sm:h-64 bg-black rounded-lg mt-4"
-          />
-        ) : (
-          <video
-            ref={videoRef}
-            className="w-full h-48 sm:h-64 bg-black rounded-lg transform scale-x-[-1]"
-            autoPlay
-            muted
-          />
-        )}
-        <div className="text-center text-sm sm:text-base md:text-lg font-semibold">
-          {recording ? `جاري التسجيل... ${timer}ث` : "ليس في وضع التسجيل"}
-        </div>
-
-        <div className="flex justify-center space-x-4">
-          {!recording && !videoUrl && (
-            <button
-              onClick={startRecording}
-              className="px-4 sm:px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-            >
-              ابدأ التسجيل
-            </button>
-          )}
-          {recording && (
-            <button
-              onClick={stopRecording}
-              className="px-4 sm:px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-            >
-              أوقف التسجيل
-            </button>
-          )}
-        </div>
-
-        {videoUrl && (
-          <div className="flex justify-center">
-            <button
-              onClick={retakeVideo}
-              className="text-blue-500 m-3 sm:m-5 hover:underline"
-            >
-              إعادة التصوير
-            </button>
-            <button
-              onClick={handleSubmit}
-              className="px-6  py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-            >
-              تقديم
-            </button>
+      <>
+        <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-blue-100 to-white">
+          <div className="w-full sm:w-4/5 md:w-3/4 lg:w-1/2 flex flex-col rounded-xl shadow-lg overflow-hidden bg-white p-4 sm:p-6 md:p-8 lg:p-10 space-y-4 m-4 sm:m-6">
+            <h1 className="text-center text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+              التشخيص الافتراضي
+            </h1>
+            <p className="text-center text-sm sm:text-base md:text-lg lg:text-xl">
+              يرجى الإجابة على السؤال التالي:
+            </p>
+            <div className="p-3 sm:p-4 bg-gray-100 rounded-lg text-center">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl">
+                {questions[currentQuestionIndex]}
+              </p>
+            </div>
+            {videoUrl ? (
+              <video
+                src={videoUrl}
+                controls
+                className="w-full h-48 sm:h-64 bg-black rounded-lg mt-4"
+              />
+            ) : (
+              <video
+                ref={videoRef}
+                className="w-full h-48 sm:h-64 bg-black rounded-lg transform scale-x-[-1]"
+                autoPlay
+                muted
+              />
+            )}
+            <div className="text-center text-sm sm:text-base md:text-lg font-semibold">
+              {recording ? `جاري التسجيل... ${timer}ث` : "ليس في وضع التسجيل"}
+            </div>
+  
+            <div className="flex justify-center space-x-6">
+              {!recording && !videoUrl && (
+                <button
+                  onClick={startRecording}
+                  className="md:px-28 md:py-1 mt-6 px-6 py-1 bg-blue-500 text-white rounded-full hover:bg-blue-600 flex items-center justify-center"
+                >
+                  ابدأ التسجيل
+                  <FaVideo className="mr-2" />
+                </button>
+              )}
+              {recording && (
+                <button
+                  onClick={stopRecording}
+                  className="md:px-28 md:py-1 mt-6 px-6 py-1 bg-red-500 text-white rounded-full hover:bg-red-600 flex items-center justify-center"
+                >
+                  أوقف التسجيل
+                  <FaStopCircle className="mr-2" />
+                </button>
+              )}
+            </div>
+  
+            {videoUrl && (
+              <div className="flex justify-center space-x-6">
+                <button
+                  onClick={retakeVideo}
+                  className="md:px-28 md:py-1 mt-6 px-6 text-sm py-1 text-blue-500 hover:underline"
+                >
+                  إعادة التصوير
+                </button>
+                <button
+                  onClick={handleSubmit}
+                  className="md:px-28 md:py-1 mt-6 px-6 py-1 bg-blue-500 text-white rounded-full hover:bg-blue-600"
+                >
+                  تقديم
+                </button>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-    </div>
-    <Footer />
-    </>
+        </div>
+        <Footer />
+      </>
   );
 };
 

@@ -4,12 +4,11 @@ import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import Footer from "./../components/Footer";
 
-
 const ThankYou = () => {
   const router = useRouter();
 
   const downloadReport = () => {
-    const reportUrl = "/path-to-your-report/report.pdf";
+    const reportUrl = "/assets/report.pdf";  // المسار الصحيح هنا
     const link = document.createElement('a');
     link.href = reportUrl;
     link.download = 'report.pdf';
