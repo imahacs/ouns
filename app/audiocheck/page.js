@@ -2,9 +2,11 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation"; // Import Next.js router for navigation
-import Image from "next/image"; // Import Image component for optimized images
+import Image from "next/image"; // s
 import Footer from "./../components/Footer";
-import { FaMicrophone, FaVolumeUp } from 'react-icons/fa'; // إضافة الأيقونات
+import { FaMicrophone, FaVolumeUp } from 'react-icons/fa'; 
+import { audio } from "../../public/assets/assets";
+
 
 const AudioCheck = () => {
   const [isRecording, setIsRecording] = useState(false);
@@ -106,7 +108,7 @@ const AudioCheck = () => {
   return (
     <>
     <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-blue-100 to-white p-4">
-      <div className="w-full max-w-4xl flex flex-col md:flex-row rounded-xl shadow-lg overflow-hidden bg-white">
+      <div className="w-full max-w-4xl flex flex-col md:flex-row rounded-xl shadow-lg overflow-hidden bg-white p-7">
         <div className="md:w-1/2 p-6 flex flex-col justify-center">
           <h1 className="text-3xl font-bold text-gray-800 mb-4 flex items-center">
             تحقق من الصوت  <FaMicrophone className="text-blue-500 mr-2" />
@@ -134,10 +136,10 @@ const AudioCheck = () => {
             )}
           </div>
         </div>
-        <div className="md:w-1/2 p-6 flex flex-col justify-center items-center">
+        <div className="md:w-1/2 p-6 flex flex-col justify-center items-center ">
           {!isRecording ? (
             <Image
-              src="/images/audio.png"
+              src={audio}
               alt="Audio not active"
               width={500}
               height={300}
@@ -148,7 +150,7 @@ const AudioCheck = () => {
               ref={canvasRef}
               width={500}
               height={300}
-              className="border border-gray-300 rounded-lg"
+              className="rounded-lg"
             />
           )}
         </div>

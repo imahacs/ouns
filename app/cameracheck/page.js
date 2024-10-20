@@ -7,6 +7,7 @@ import Footer from "./../components/Footer";
 // Import icons from Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCamera, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { cam } from "../../public/assets/assets";
 
 const CameraCheck = () => {
   const [isRecording, setIsRecording] = useState(false);
@@ -130,7 +131,7 @@ const CameraCheck = () => {
           <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-center items-center">
             {!isRecording ? (
               <Image 
-                src="/images/cam.png"
+                src={cam}
                 alt="Camera not active"
                 width={500}
                 height={300}
