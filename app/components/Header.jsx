@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { MdMenu, MdClose } from 'react-icons/md'; 
-import logo from '../assets/logo.svg'; 
+import logo from '../../public/assets/logo.svg'; 
 import { useRouter } from 'next/navigation'; 
 
 const Header = () => {
