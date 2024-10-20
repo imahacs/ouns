@@ -9,8 +9,9 @@ const ThankYou = () => {
   const router = useRouter();
 
   const downloadReport = () => {
-    const reportUrl = "/assets/repoet.pdf"; // Updated path
+    const reportUrl = "https://imahacs.github.io/ouns/assets/repoet.pdf";
     const link = document.createElement('a');
+    link.target = "_blank";
     link.href = reportUrl;
     link.download = 'report.pdf';
     document.body.appendChild(link);
