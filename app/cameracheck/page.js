@@ -121,7 +121,7 @@ const CameraCheck = () => {
               ) : (
                 <button
                   onClick={continueToNextPage}
-                  className="md:px-28 md:py-1 mt-6 md:mt-36 px-24 py-1 bg-blue-500 text-white rounded-full shadow-lg hover:bg-green-600 transition duration-200 flex items-center justify-center"
+                  className="md:px-28 md:py-1 mt-6 md:mt-36 px-24 py-1 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition duration-200 flex items-center justify-center"
                 >
                   المتابعة
                 </button>

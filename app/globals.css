@@ -13,7 +13,11 @@
     @apply bg-black text-white px-4 py-2 rounded-lg font-medium inline-flex items-center justify-center tracking-tight;
   }
   .btn-primary {
-    @apply bg-black text-white;
+    @apply  bg-[#3A4D8F]  text-white;
+  }
+
+  .btn-secondery {
+    @apply text-[#3A4D8F];
   }
 
   .btn-text {
@@ -26,6 +30,20 @@
 
   .tag {
     @apply text-sm inline-flex border border-[#222]/10 px-3 py-1 rounded-lg tracking-tight;
+  }
+  
+  .loader {
+    border: 8px solid #ffffff; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
   
 }
