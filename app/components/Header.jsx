@@ -41,7 +41,7 @@ const Header = () => {
                 className='bg-black text-white px-4 py-2 ml-4 rounded-lg font-medium inline-flex align-center justify-center tracking-tight'
                 onClick={handleButtonClick}
               >
-                احصل على الخدمة مجاناً
+                احصل على الخدمة 
               </button>
             </nav>
 

@@ -24,7 +24,7 @@ const Hero = ({ id }) => {
           أُنس لتأنس
           </h1>
           <p className="text-xl text-[#010D3E] tracking-tight mt-6 leading-loose">
-  احصل على تقييم شامل في <strong>5 دقائق</strong> من خلال <strong>3 أسئلة</strong> بسيطة. باستخدام <strong>الذكاء الاصطناعي</strong>،<br/> نقدم لك تحاليل دقيقة لمساعدتك في تحسين رفاهيتك النفسية. ابدأ رحلتك نحو صحة نفسية أفضل <strong>اليوم</strong>!
+  احصل على تقييم شامل في <strong>3 دقائق</strong> من خلال <strong>3 أسئلة</strong> . باستخدام <strong>الذكاء الاصطناعي</strong>،<br/> نقدم لك تحاليل دقيقة لمساعدتك في تحسين رفاهيتك النفسية. ابدأ رحلتك نحو صحة نفسية أفضل <strong>اليوم</strong>!
 </p>
 
           <div className="flex gap-1 items-center mt-[30px]">
