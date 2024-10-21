@@ -4,5 +4,6 @@ import hero from './hero.png';
 import thx from "./images/thanku.png"
 import cam from "./images/cam.png"
 import audio from "./images/audio.png"
+import showcase from './showcase.png';
 
-export { logo, header, hero, thx, cam, audio };
+export { logo, header, hero, thx, cam, audio, showcase };
