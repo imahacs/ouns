@@ -6,7 +6,7 @@ import Image from "next/image";
 import Footer from "./../components/Footer";
 // Import icons from Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCamera, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { cam } from "../../public/assets/assets";
 
 const CameraCheck = () => {
@@ -55,7 +55,10 @@ const CameraCheck = () => {
           }
 
           const averageBrightness = totalBrightness / (data.length / 4);
-          setIsCameraGood(averageBrightness > 100);
+          const cameraIsGood = averageBrightness > 100;
+          setIsCameraGood(cameraIsGood);
+          console.log("Average brightness:", averageBrightness); // Log average brightness
+          console.log("Camera good:", cameraIsGood); // Log if the camera is good or not
 
           animationRef.current = requestAnimationFrame(draw);
         } else {
@@ -94,7 +97,10 @@ const CameraCheck = () => {
 
   const continueToNextPage = () => {
     if (isCameraGood) {
+      console.log("Navigating to /waywork"); // Log the navigation action
       router.push("/waywork");
+    } else {
+      console.log("Camera is not good enough, cannot navigate."); // Log failure to navigate
     }
   };
 
