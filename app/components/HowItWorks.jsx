@@ -18,7 +18,7 @@ const HowItWorks = ({ id }) => {
     {
       stepNumber: "3",
       title: "أسئلة سريعة",
-      description: "3 أسئلة في 5 دقائق.",
+      description: "3 أسئلة في 3 دقائق.",
       icon: <FaQuestionCircle className="text-6xl text-[#010D3E]" />, 
     },
     {
@@ -30,7 +30,7 @@ const HowItWorks = ({ id }) => {
     {
       stepNumber: "5",
       title: "دعم مستمر",
-      description: "توجيهات دقيقة للخطوات التالية.",
+      description: "توجيهات  للخطوات التالية.",
       icon: <FaHandsHelping className="text-6xl text-[#010D3E]" />, 
     },
   ];
