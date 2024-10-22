@@ -6,7 +6,7 @@ import Image from "next/image";
 import Footer from "./../components/Footer";
 import { FaMicrophone } from 'react-icons/fa'; 
 import { audio } from "../../public/assets/assets";
-import Header from "../header/header";
+import Header from "../components/HeaderTwo";
 
 
 const AudioCheck = () => {

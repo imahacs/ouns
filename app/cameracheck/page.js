@@ -7,7 +7,7 @@ import Footer from "./../components/Footer";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { cam } from "../../public/assets/assets";
-import Header from "../header/header";
+import Header from "../components/HeaderTwo";
 
 const CameraCheck = () => {
   const [isRecording, setIsRecording] = useState(false);

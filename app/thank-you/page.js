@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import Footer from "./../components/Footer";
 import { thx } from "../../public/assets/assets";
-import Header from "../header/header";
+import Header from "../components/HeaderTwo";
 
 const ThankYou = () => {
   const router = useRouter();
@@ -66,7 +66,7 @@ const ThankYou = () => {
               alt="Thank youu"
               width={100}
               height={90}
-              
+
             />
           </div>
           <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">شكرًا لك!</h1>

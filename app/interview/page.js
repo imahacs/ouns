@@ -4,7 +4,7 @@ import React, { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Footer from "./../components/Footer";
 import { FaVideo, FaStopCircle } from "react-icons/fa";
-import Header from "../header/header";
+import Header from "../components/HeaderTwo";
 
 
 const Interview = () => {

@@ -2,7 +2,7 @@
 import React from 'react';
 import Footer from "./../components/Footer";
 import { useRouter } from 'next/navigation';
-import Header from '../header/header';
+import Header from '../components/HeaderTwo';
 
 const GetStarted = () => {
     const router = useRouter(); 

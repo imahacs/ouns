@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuestionCircle, faClock, faPlay, faFileAlt } from '@fortawesome/free-solid-svg-icons';
 import Footer from "./../components/Footer";
-import Header from "../header/header";
+import Header from "../components/HeaderTwo";
 
 const WayWork = () => {
     const router = useRouter(); 
