@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Footer from "./../components/Footer";
 import { FaVideo, FaStopCircle } from "react-icons/fa";
+import Header from "../header/header";
 
 
 const Interview = () => {
@@ -51,15 +52,13 @@ const Interview = () => {
       recorder.onstop = () => {
         const blob = new Blob(chunks.current, { type: "video/webm" });
         const url = URL.createObjectURL(blob);
-        setVideoUrl(url); // Set the URL for the recorded video
+        setVideoUrl(url); 
         chunks.current = [];
         setRecording(false);
-        // Stop the stream after recording is complete
         stream.getTracks().forEach((track) => track.stop());
-        videoRef.current.srcObject = null; // Close the camera stream
+        videoRef.current.srcObject = null; 
       };
 
-      // Timer logic
       const interval = setInterval(() => {
         setTimer((prev) => {
           if (prev === 1) {
@@ -72,16 +71,14 @@ const Interview = () => {
     }
   };
 
-  // Stop recording manually or after timer
   const stopRecording = () => {
     if (mediaRecorder) {
       mediaRecorder.stop();
       setRecording(false);
-      setTimer(60); // Reset timer
+      setTimer(60); 
     }
   };
 
-  // Move to the next question or navigate to the Thank You page
   const handleSubmit = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -100,6 +97,7 @@ const Interview = () => {
 
   return (
       <>
+      <Header />
         <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-blue-100 to-white">
           <div className="w-full sm:w-4/5 md:w-3/4 lg:w-1/2 flex flex-col rounded-xl shadow-lg overflow-hidden bg-white p-4 sm:p-6 md:p-8 lg:p-10 space-y-4 m-4 sm:m-6">
             <h1 className="text-center text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">

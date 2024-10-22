@@ -2,6 +2,7 @@
 import React from 'react';
 import Footer from "./../components/Footer";
 import { useRouter } from 'next/navigation';
+import Header from '../header/header';
 
 const GetStarted = () => {
     const router = useRouter(); 
@@ -11,6 +12,7 @@ const GetStarted = () => {
 
   return (
     <>
+    <Header />
     <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-blue-100 to-white">
       <div className="w-full sm:w-4/5 md:w-3/4 lg:w-1/2 flex flex-col sm:flex-row rounded-xl shadow-lg overflow-hidden bg-white m-6">
         <div className="w-full sm:w-1/2 p-4 sm:p-6 md:p-12 flex flex-col justify-center bg-white">

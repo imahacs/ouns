@@ -70,12 +70,10 @@ const Header = () => {
               <a href="#how-it-works" onClick={() => handleMenuItemClick('#how-it-works')}>طريقة العمل</a>
               <button 
                 className='bg-black text-white px-4 py-2 rounded-lg font-medium inline-flex align-center justify-center tracking-tight'
-                onClick={() => {
-                  handleMenuItemClick('/assessment'); 
-                }}
+                onClick={handleButtonClick}
               >
-                احصل على الخدمة مجاناً
-              </button>
+                احصل على الخدمة 
+                </button>
             </nav>
 
             {menuOpen && <div className="fixed inset-0 bg-black opacity-50 z-20" onClick={toggleMenu}></div>}

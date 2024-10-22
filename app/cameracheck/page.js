@@ -7,13 +7,14 @@ import Footer from "./../components/Footer";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { cam } from "../../public/assets/assets";
+import Header from "../header/header";
 
 const CameraCheck = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [videoStream, setVideoStream] = useState(null);
   const [isCameraGood, setIsCameraGood] = useState(false);
-  const [isCameraLoading, setIsCameraLoading] = useState(false); // حالة تحميل الكاميرا
-  const [cameraError, setCameraError] = useState(""); // حالة خطأ الكاميرا
+  const [isCameraLoading, setIsCameraLoading] = useState(false); 
+  const [cameraError, setCameraError] = useState(""); 
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
   const router = useRouter();
@@ -79,8 +80,8 @@ const CameraCheck = () => {
   }, [isRecording, videoStream]);
 
   const startRecording = async () => {
-    setIsCameraLoading(true); // الكاميرا قيد التشغيل
-    setCameraError(""); // إعادة تعيين أي خطأ سابق
+    setIsCameraLoading(true);   
+    setCameraError(""); 
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       setVideoStream(stream);
@@ -89,7 +90,7 @@ const CameraCheck = () => {
       console.error("خطأ في الوصول إلى الكاميرا: ", err);
       setCameraError("تعذر الوصول إلى الكاميرا. يرجى التأكد من اتصال الكاميرا ومنح الإذن.");
     } finally {
-      setIsCameraLoading(false); // انتهى التشغيل أو فشل
+      setIsCameraLoading(false); 
     }
   };
 
@@ -112,6 +113,7 @@ const CameraCheck = () => {
 
   return (
     <>
+    <Header />
       <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-blue-100 to-white p-4">
         <div className="w-full max-w-4xl flex flex-col md:flex-row rounded-xl shadow-lg overflow-hidden bg-white border border-gray-300">
           <div className="md:w-1/2 p-6 flex flex-col justify-center">
@@ -123,7 +125,6 @@ const CameraCheck = () => {
               يرجى التحقق من الكاميرا الخاصة بك وتفعيل الخيار للسماح لها بالوصول. انقر على زر التحقق. بمجرد أن يتضح أن الكاميرا تعمل بشكل جيد، يمكنك المتابعة.
             </p>
 
-            {/* عرض رسالة خطأ في حال وجود خطأ بالكاميرا */}
             {cameraError && (
               <p className="text-red-500 mb-4">{cameraError}</p>
             )}
@@ -132,7 +133,7 @@ const CameraCheck = () => {
               {!isRecording ? (
                 <button
                   onClick={startRecording}
-                  disabled={isCameraLoading} // تعطيل الزر أثناء التحميل
+                  disabled={isCameraLoading}  
                   className={`md:px-28 md:py-1 mt-6 md:mt-36 px-24 py-1 ${isCameraLoading ? 'bg-gray-400' : 'bg-blue-500'} text-white rounded-full shadow-lg hover:bg-blue-600 transition duration-200 flex items-center justify-center`}
                 >
                   {isCameraLoading ? "جار التحميل..." : "تحقق"}

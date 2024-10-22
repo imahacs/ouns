@@ -4,12 +4,13 @@ import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import Footer from "./../components/Footer";
 import { thx } from "../../public/assets/assets";
+import Header from "../header/header";
 
 const ThankYou = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [loadingText, setLoadingText] = useState("تحليل البيانات");
-  
+
   useEffect(() => {
     const loadingDots = setInterval(() => {
       setLoadingText((prevText) => {
@@ -56,6 +57,7 @@ const ThankYou = () => {
 
   return (
     <>
+    <Header />
       <div className="min-h-screen w-full flex justify-center items-center bg-gradient-to-r from-blue-100 to-white">
         <div className="w-full sm:w-4/5 md:w-3/4 lg:w-1/2 flex flex-col rounded-xl shadow-lg overflow-hidden bg-white p-4 sm:p-6 md:p-10 space-y-4 text-center m-6">
           <div className="flex justify-center items-center">

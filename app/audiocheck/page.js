@@ -1,23 +1,24 @@
-"use client"; // Add this line to make it a Client Component
+"use client"; 
 
 import React, { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation"; // Import Next.js router for navigation
+import { useRouter } from "next/navigation"; 
 import Image from "next/image"; 
 import Footer from "./../components/Footer";
 import { FaMicrophone } from 'react-icons/fa'; 
 import { audio } from "../../public/assets/assets";
+import Header from "../header/header";
 
 
 const AudioCheck = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [audioStream, setAudioStream] = useState(null);
-  const [isAudioGood, setIsAudioGood] = useState(false); // State for audio check
-  const [audioWasGoodOnce, setAudioWasGoodOnce] = useState(false); // Flag to keep button enabled
+  const [isAudioGood, setIsAudioGood] = useState(false); 
+  const [audioWasGoodOnce, setAudioWasGoodOnce] = useState(false); 
   const canvasRef = useRef(null);
   const audioContextRef = useRef(null);
   const analyserRef = useRef(null);
   const animationRef = useRef(null);
-  const router = useRouter(); // Use Next.js router for page navigation
+  const router = useRouter(); 
 
   useEffect(() => {
     if (isRecording && audioStream) {
@@ -43,15 +44,11 @@ const AudioCheck = () => {
 
         for (let i = 0; i < bufferLength; i++) {
           barHeight = dataArray[i] / 2;
-
-          // Change the color for a gradient effect
           const alpha = Math.min(1, barHeight / 255);
           const color = `rgba(0, 128, 255, ${alpha})`;
 
           canvasCtx.fillStyle = color;
           canvasCtx.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight);
-
-          // Small rectangles for sound wave look
           if (i % 2 === 0) {
             canvasCtx.fillRect(x + barWidth / 2 - 1, canvas.height - barHeight / 2, 2, barHeight);
           }
@@ -59,11 +56,9 @@ const AudioCheck = () => {
           x += barWidth + 2;
           totalVolume += dataArray[i];
         }
-
-        // Set audio as good if volume is above a threshold and keep it enabled
         if (totalVolume > 5000) {
           setIsAudioGood(true);
-          setAudioWasGoodOnce(true); // Keep the button enabled forever after audio is good
+          setAudioWasGoodOnce(true); 
         }
 
         animationRef.current = requestAnimationFrame(drawBars);
@@ -100,13 +95,14 @@ const AudioCheck = () => {
 
   const continueToNextPage = () => {
     if (audioWasGoodOnce) {
-      stopRecording(); // Stop recording when user clicks "متابعه"
+      stopRecording(); 
       router.push("/cameracheck");
     }
   };
 
   return (
     <>
+    <Header />
     <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-blue-100 to-white p-4">
       <div className="w-full max-w-4xl flex flex-col md:flex-row rounded-xl shadow-lg overflow-hidden bg-white p-7">
         <div className="md:w-1/2 p-6 flex flex-col justify-center">
