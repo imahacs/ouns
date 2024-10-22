@@ -66,6 +66,7 @@ const ThankYou = () => {
               alt="Thank youu"
               width={100}
               height={90}
+              
             />
           </div>
           <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">شكرًا لك!</h1>
