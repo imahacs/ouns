@@ -23,7 +23,7 @@ const WayWork = () => {
                     <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-center items-center bg-white rounded-xl shadow-lg overflow-hidden mb-6 md:mb-0">
                         <FontAwesomeIcon icon={faQuestionCircle} className="text-blue-500 mb-4" size="3x" />
                         <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">3 أسئلة</h1>
-                        <p className="text-gray-600 mb-8 text-center">ستتضمن المقابلة 3 أسئلة.</p>
+                        <p className="text-gray-600 mb-8 text-center">سيتضمن التقييم 3 أسئلة.</p>
                     </div>
 
                     <div className="flex items-center justify-center">
@@ -41,7 +41,7 @@ const WayWork = () => {
                     className="flex items-center px-16 py-3 md:px-36 mt-6 md:mt-11 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition duration-200"
                 >
                     <FontAwesomeIcon icon={faPlay} className="ml-2" />
-                    بدء المقابلة
+                    بدء التقييم
                 </button>
             </div>
         </div>
