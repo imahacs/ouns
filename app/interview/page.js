@@ -87,8 +87,8 @@ const Interview = () => {
   const handleSubmit = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setVideoUrl(""); // Reset video URL for the next question
-      setTimer(60); // Reset timer for the next question
+      setVideoUrl(""); 
+      setTimer(60); 
     } else {
       router.push("/thank-you");
     }

@@ -17,7 +17,7 @@ const ThankYou = () => {
         if (prevText.length < 15) {
           return prevText + ".";
         } else {
-          return "تحليل البيانات"; // Reset to original text when max dots are reached
+          return "تحليل البيانات"; 
         }
       });
     }, 500); // Change dots every half second
