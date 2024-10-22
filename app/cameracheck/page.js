@@ -1,10 +1,9 @@
-"use client"; // Add this line to make it a Client Component
+"use client";
 
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Footer from "./../components/Footer";
-// Import icons from Font Awesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { cam } from "../../public/assets/assets";
@@ -13,6 +12,8 @@ const CameraCheck = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [videoStream, setVideoStream] = useState(null);
   const [isCameraGood, setIsCameraGood] = useState(false);
+  const [isCameraLoading, setIsCameraLoading] = useState(false); // حالة تحميل الكاميرا
+  const [cameraError, setCameraError] = useState(""); // حالة خطأ الكاميرا
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
   const router = useRouter();
@@ -21,7 +22,7 @@ const CameraCheck = () => {
     if (isRecording && videoStream) {
       const canvas = canvasRef.current;
       if (!canvas) {
-        console.error("Canvas reference is null");
+        console.error("مرجع الكانفاس فارغ");
         return;
       }
 
@@ -57,12 +58,12 @@ const CameraCheck = () => {
           const averageBrightness = totalBrightness / (data.length / 4);
           const cameraIsGood = averageBrightness > 100;
           setIsCameraGood(cameraIsGood);
-          console.log("Average brightness:", averageBrightness); // Log average brightness
-          console.log("Camera good:", cameraIsGood); // Log if the camera is good or not
+          console.log("متوسط السطوع:", averageBrightness); 
+          console.log("جودة الكاميرا:", cameraIsGood); 
 
           animationRef.current = requestAnimationFrame(draw);
         } else {
-          console.error("Canvas context is null");
+          console.error("السياق الخاص بالكانفاس فارغ");
         }
       };
 
@@ -78,12 +79,17 @@ const CameraCheck = () => {
   }, [isRecording, videoStream]);
 
   const startRecording = async () => {
+    setIsCameraLoading(true); // الكاميرا قيد التشغيل
+    setCameraError(""); // إعادة تعيين أي خطأ سابق
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
       setVideoStream(stream);
       setIsRecording(true);
     } catch (err) {
-      console.error("Error accessing camera: ", err);
+      console.error("خطأ في الوصول إلى الكاميرا: ", err);
+      setCameraError("تعذر الوصول إلى الكاميرا. يرجى التأكد من اتصال الكاميرا ومنح الإذن.");
+    } finally {
+      setIsCameraLoading(false); // انتهى التشغيل أو فشل
     }
   };
 
@@ -97,10 +103,10 @@ const CameraCheck = () => {
 
   const continueToNextPage = () => {
     if (isCameraGood) {
-      console.log("Navigating to /waywork"); // Log the navigation action
+      console.log("الانتقال إلى /waywork"); 
       router.push("/waywork");
     } else {
-      console.log("Camera is not good enough, cannot navigate."); // Log failure to navigate
+      console.log("الكاميرا ليست جيدة بما يكفي، لا يمكن الانتقال."); 
     }
   };
 
@@ -116,13 +122,20 @@ const CameraCheck = () => {
             <p className="text-gray-600 mb-4">
               يرجى التحقق من الكاميرا الخاصة بك وتفعيل الخيار للسماح لها بالوصول. انقر على زر التحقق. بمجرد أن يتضح أن الكاميرا تعمل بشكل جيد، يمكنك المتابعة.
             </p>
+
+            {/* عرض رسالة خطأ في حال وجود خطأ بالكاميرا */}
+            {cameraError && (
+              <p className="text-red-500 mb-4">{cameraError}</p>
+            )}
+
             <div className="flex space-x-4">
               {!isRecording ? (
                 <button
                   onClick={startRecording}
-                  className="md:px-28 md:py-1 mt-6 md:mt-36 px-24 py-1 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition duration-200 flex items-center justify-center"
+                  disabled={isCameraLoading} // تعطيل الزر أثناء التحميل
+                  className={`md:px-28 md:py-1 mt-6 md:mt-36 px-24 py-1 ${isCameraLoading ? 'bg-gray-400' : 'bg-blue-500'} text-white rounded-full shadow-lg hover:bg-blue-600 transition duration-200 flex items-center justify-center`}
                 >
-                  تحقق
+                  {isCameraLoading ? "جار التحميل..." : "تحقق"}
                 </button>
               ) : (
                 <button
@@ -138,7 +151,7 @@ const CameraCheck = () => {
             {!isRecording ? (
               <Image 
                 src={cam}
-                alt="Camera not active"
+                alt="الكاميرا غير مفعلة"
                 width={500}
                 height={300}
                 className="w-full h-auto"

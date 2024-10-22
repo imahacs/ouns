@@ -9,8 +9,7 @@ const ThankYou = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [loadingText, setLoadingText] = useState("تحليل البيانات");
-
-  // Simulate loading for 5 seconds and change the number of dots dynamically
+  
   useEffect(() => {
     const loadingDots = setInterval(() => {
       setLoadingText((prevText) => {
@@ -20,15 +19,15 @@ const ThankYou = () => {
           return "تحليل البيانات"; 
         }
       });
-    }, 500); // Change dots every half second
+    }, 500); 
 
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 5000); // 5 seconds loading time
+    }, 5000); 
 
     return () => {
-      clearInterval(loadingDots); // Cleanup interval on unmount
-      clearTimeout(timer);        // Cleanup timeout on unmount
+      clearInterval(loadingDots); 
+      clearTimeout(timer);       
     };
   }, []);
 
@@ -47,7 +46,6 @@ const ThankYou = () => {
     return (
       <div className="min-h-screen w-full flex justify-center items-center bg-gradient-to-r from-blue-100 to-white">
         <div className="text-center">
-          {/* Loader spinner */}
           <div className="loader mx-auto mb-4"></div>
           <h1 className="text-2xl font-bold">{loadingText}</h1>
           <p className="text-lg mt-4">جارٍ تحليل نتائجك، يرجى الانتظار...</p>

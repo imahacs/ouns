@@ -11,7 +11,7 @@ const Interview = () => {
   const [stream, setStream] = useState(null);
   const [videoUrl, setVideoUrl] = useState("");
   const [recording, setRecording] = useState(false);
-  const [timer, setTimer] = useState(60); // 1 minute timer
+  const [timer, setTimer] = useState(60); 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const videoRef = useRef(null);
   const chunks = useRef([]);
@@ -23,22 +23,20 @@ const Interview = () => {
     "3. هل كنت تشعر بأي شكوك في النفس، توتر أو قلق، أو إحساس باليأس؟",
 ];
 
-  // Request camera permissions and set up the stream
   const setupCamera = async () => {
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia({
         video: true,
       });
       setStream(mediaStream);
-      videoRef.current.srcObject = mediaStream; // Show live feed
+      videoRef.current.srcObject = mediaStream; 
     } catch (error) {
       console.error("Permission denied or no camera available", error);
     }
   };
 
-  // Start video recording
   const startRecording = () => {
-    setupCamera(); // Set up camera when starting the recording
+    setupCamera(); 
 
     if (stream) {
       const recorder = new MediaRecorder(stream);
