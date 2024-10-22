@@ -63,7 +63,7 @@ const ThankYou = () => {
           <div className="flex justify-center items-center">
             <Image 
               src={thx}
-              alt="Thank you"
+              alt="Thank youu"
               width={100}
               height={90}
             />
