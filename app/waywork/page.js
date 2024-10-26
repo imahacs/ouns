@@ -60,7 +60,6 @@ const WayWork = () => {
                     className="flex items-center px-16 py-3 md:px-36 mt-6 md:mt-11 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition duration-200"
                 >
                     بدء التقييم
-                    <FontAwesomeIcon icon={faPlay} className="mr-2" />
                 </button>
             </div>
         </div>
