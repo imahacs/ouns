@@ -7,7 +7,7 @@ import Header from '../components/HeaderTwo';
 const GetStarted = () => {
     const router = useRouter(); 
     const handleNavigation = () => {
-      router.push('/audiocheck'); 
+      router.push('/terms'); 
     };
 
   return (

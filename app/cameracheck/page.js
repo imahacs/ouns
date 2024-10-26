@@ -23,7 +23,7 @@ const CameraCheck = () => {
     if (isRecording && videoStream) {
       const canvas = canvasRef.current;
       if (!canvas) {
-        console.error("مرجع الكانفاس فارغ");
+        console.error("empty");
         return;
       }
 
@@ -104,7 +104,6 @@ const CameraCheck = () => {
 
   const continueToNextPage = () => {
     if (isCameraGood) {
-      console.log("الانتقال إلى /waywork"); 
       router.push("/waywork");
     } else {
       console.log("الكاميرا ليست جيدة بما يكفي، لا يمكن الانتقال."); 
