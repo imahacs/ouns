@@ -13,6 +13,7 @@ const Interview = () => {
   const [timer, setTimer] = useState(60);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showPopup, setShowPopup] = useState(true);
+  const [cancelled, setCancelled] = useState(false); 
   const videoRef = useRef(null);
   const chunks = useRef([]);
   const router = useRouter();
@@ -37,6 +38,11 @@ const Interview = () => {
   };
 
   const startRecording = () => {
+    if (cancelled) {
+      setShowPopup(true);
+      return;
+    }
+
     if (stream) {
       const recorder = new MediaRecorder(stream);
       setMediaRecorder(recorder);
@@ -184,13 +190,17 @@ const Interview = () => {
                 onClick={() => {
                   setShowPopup(false);
                   setupCamera();
+                  setCancelled(false); 
                 }}
                 className="bg-blue-500 text-white px-8 py-2 rounded-full hover:bg-blue-600 ml-2"
               >
                 موافق
               </button>
               <button
-                onClick={() => setShowPopup(false)}
+                onClick={() => {
+                  setShowPopup(false);
+                  setCancelled(true); 
+                }}
                 className="text-blue-500 hover:underline"
               >
                 إلغاء

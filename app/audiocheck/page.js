@@ -1,10 +1,10 @@
-"use client"; 
+"use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation"; 
-import Image from "next/image"; 
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 import Footer from "./../components/Footer";
-import { FaMicrophone } from 'react-icons/fa'; 
+import { FaMicrophone } from 'react-icons/fa';
 import { audio } from "../../public/assets/assets";
 import Header from "../components/HeaderTwo";
 
@@ -12,13 +12,13 @@ import Header from "../components/HeaderTwo";
 const AudioCheck = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [audioStream, setAudioStream] = useState(null);
-  const [isAudioGood, setIsAudioGood] = useState(false); 
-  const [audioWasGoodOnce, setAudioWasGoodOnce] = useState(false); 
+  const [isAudioGood, setIsAudioGood] = useState(false);
+  const [audioWasGoodOnce, setAudioWasGoodOnce] = useState(false);
   const canvasRef = useRef(null);
   const audioContextRef = useRef(null);
   const analyserRef = useRef(null);
   const animationRef = useRef(null);
-  const router = useRouter(); 
+  const router = useRouter();
 
   useEffect(() => {
     if (isRecording && audioStream) {
@@ -58,7 +58,7 @@ const AudioCheck = () => {
         }
         if (totalVolume > 5000) {
           setIsAudioGood(true);
-          setAudioWasGoodOnce(true); 
+          setAudioWasGoodOnce(true);
         }
 
         animationRef.current = requestAnimationFrame(drawBars);
@@ -95,67 +95,66 @@ const AudioCheck = () => {
 
   const continueToNextPage = () => {
     if (audioWasGoodOnce) {
-      stopRecording(); 
+      stopRecording();
       router.push("/cameracheck");
     }
   };
 
   return (
     <>
-    <Header />
-    <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-blue-100 to-white p-4">
-      <div className="w-full max-w-4xl flex flex-col md:flex-row rounded-xl shadow-lg overflow-hidden bg-white p-7">
-        <div className="md:w-1/2 p-6 flex flex-col justify-center">
-          <h1 className="text-3xl font-bold text-gray-800 mb-4 flex items-center">
-            تحقق من الصوت  <FaMicrophone className="text-blue-500 mr-2" />
-          </h1>
-          <p className="text-gray-600 mb-8">
-            يرجى التحقق من الميكروفون الخاص بك وتفعيل الخيار للسماح له بالوصول. انقر على زر التحقق. بمجرد أن يتضح أن الصوت بشكل جيد، يمكنك المتابعة.
-          </p>
-          <div className="flex space-x-4">
-            {!isRecording ? (
-              <button
-                onClick={startRecording}
-                className="md:px-28 md:py-1 mt-6 md:mt-36 px-24 py-1 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition duration-200"
-              >
-                تحقق 
-              </button>
-            ) : (
-              <button
-                onClick={continueToNextPage}
-                className={`md:px-28 md:py-1 mt-6 md:mt-36 px-24 py-1 ${
-                  audioWasGoodOnce ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-400"
-                } text-white rounded-full shadow-lg transition duration-200`}
-              >
-                المتابعه
-              </button>
-            )}
+      <Header />
+      <div className="min-h-screen flex justify-center items-center bg-gradient-to-r from-blue-100 to-white p-4">
+        <div className="w-full max-w-4xl flex flex-col md:flex-row rounded-xl shadow-lg overflow-hidden bg-white p-7">
+          <div className="md:w-1/2 p-6 flex flex-col justify-center">
+            <h1 className="text-3xl font-bold text-gray-800 mb-4 flex items-center">
+              تحقق من الصوت  <FaMicrophone className="text-blue-500 mr-2" />
+            </h1>
+            <p className="text-gray-600 mb-8">
+              يرجى التحقق من الميكروفون الخاص بك وتفعيل الخيار للسماح له بالوصول. انقر على زر التحقق. بمجرد أن يتضح أن الصوت بشكل جيد، يمكنك المتابعة.
+            </p>
+            <div className="flex space-x-4">
+              {!isRecording ? (
+                <button
+                  onClick={startRecording}
+                  className="md:px-28 md:py-1 mt-6 md:mt-36 px-24 py-1 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition duration-200"
+                >
+                  تحقق
+                </button>
+              ) : (
+                <button
+                  onClick={continueToNextPage}
+                  className={`md:px-28 md:py-1 mt-6 md:mt-36 px-24 py-1 ${audioWasGoodOnce ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-400"
+                    } text-white rounded-full shadow-lg transition duration-200`}
+                >
+                  المتابعه
+                </button>
+              )}
+            </div>
           </div>
-        </div>
-        <div className="md:w-1/2 p-6 flex flex-col justify-center items-center">
-          {!isRecording ? (
-            <Image
-              src={audio}
-              alt="Audio not active"
-              width={500}
-              height={300}
-              className="rounded-lg"
-            />
-          ) : (
-            <div className="flex justify-center items-center w-full">
-              <canvas
-                ref={canvasRef}
+          <div className="md:w-1/2 p-6 flex flex-col justify-center items-center">
+            {!isRecording ? (
+              <Image
+                src={audio}
+                alt="Audio not active"
                 width={500}
                 height={300}
                 className="rounded-lg"
-                style={{ padding: '12px', margin: '0 auto' }} 
               />
-            </div>
-          )}
+            ) : (
+              <div className="flex justify-center items-center w-full">
+                <canvas
+                  ref={canvasRef}
+                  width={500}
+                  height={300}
+                  className="rounded-lg"
+                  style={{ padding: '12px', margin: '0 auto' }}
+                />
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-    <Footer />
+      <Footer />
     </>
   );
 };
