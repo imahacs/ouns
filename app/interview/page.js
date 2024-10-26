@@ -27,7 +27,7 @@ const Interview = () => {
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia({
         video: true,
-        audio: true, // Request audio permissions as well
+        audio: true,
       });
       setStream(mediaStream);
       videoRef.current.srcObject = mediaStream;
@@ -170,37 +170,35 @@ const Interview = () => {
       </div>
 
       {showPopup && (
-  <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-    <div className="bg-white p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg w-11/12 sm:w-4/5 md:w-3/4 lg:w-2/5 h-64 flex flex-col items-center justify-center shadow-lg">
-      <h2 className="text-lg font-bold mb-2 text-center">تنبيه</h2>
-      <p className="text-center text-sm sm:text-base ">
-        **ملاحظة:** سيتم تسجيل مقاطع الفيديو خلال هذه العملية، لكن سيتم حذفها فور انتهاء الجلسة، ولن يتم الاحتفاظ بها حفاظًا على خصوصيتك.
-      </p>
-      <p className="text-center text-sm sm:text-base text-red-600 mt-2">
-        إذا قمت بإلغاء العملية، فلن تتمكن من التسجيل.
-      </p>
-      <div className="flex justify-between mt-4">
-        <button
-          onClick={() => {
-            setShowPopup(false);
-            setupCamera();
-          }}
-          className="bg-blue-500 text-white px-8 py-2 rounded-full hover:bg-blue-600 ml-2"
-        >
-          موافق
-        </button>
-        <button
-          onClick={() => setShowPopup(false)}
-          className="text-blue-500 hover:underline"
-        >
-          إلغاء
-        </button>
-      </div>
-    </div>
-  </div>
-)}
-
-
+        <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-4 sm:p-6 md:p-8 lg:p-10 rounded-lg w-11/12 sm:w-4/5 md:w-3/4 lg:w-2/5 h-64 flex flex-col items-center justify-center shadow-lg">
+            <h2 className="text-lg font-bold mb-2 text-center">تنبيه</h2>
+            <p className="text-center text-sm sm:text-base ">
+              **ملاحظة:** سيتم تسجيل مقاطع الفيديو خلال هذه العملية، لكن سيتم حذفها فور انتهاء الجلسة، ولن يتم الاحتفاظ بها حفاظًا على خصوصيتك.
+            </p>
+            <p className="text-center text-sm sm:text-base text-red-600 mt-2">
+              إذا قمت بإلغاء العملية، فلن تتمكن من التسجيل.
+            </p>
+            <div className="flex justify-between mt-4">
+              <button
+                onClick={() => {
+                  setShowPopup(false);
+                  setupCamera();
+                }}
+                className="bg-blue-500 text-white px-8 py-2 rounded-full hover:bg-blue-600 ml-2"
+              >
+                موافق
+              </button>
+              <button
+                onClick={() => setShowPopup(false)}
+                className="text-blue-500 hover:underline"
+              >
+                إلغاء
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <Footer />
     </>
   );
