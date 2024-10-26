@@ -13,7 +13,7 @@ const Interview = () => {
   const [timer, setTimer] = useState(60);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [showPopup, setShowPopup] = useState(true);
-  const [cancelled, setCancelled] = useState(false); 
+  const [cancelled, setCancelled] = useState(false);
   const videoRef = useRef(null);
   const chunks = useRef([]);
   const router = useRouter();
@@ -88,10 +88,12 @@ const Interview = () => {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setVideoUrl("");
       setTimer(60);
+      setupCamera();
     } else {
       router.push("/thank-you");
     }
   };
+
 
   const retakeVideo = () => {
     setVideoUrl("");
@@ -190,7 +192,7 @@ const Interview = () => {
                 onClick={() => {
                   setShowPopup(false);
                   setupCamera();
-                  setCancelled(false); 
+                  setCancelled(false);
                 }}
                 className="bg-blue-500 text-white px-8 py-2 rounded-full hover:bg-blue-600 ml-2"
               >
@@ -199,7 +201,7 @@ const Interview = () => {
               <button
                 onClick={() => {
                   setShowPopup(false);
-                  setCancelled(true); 
+                  setCancelled(true);
                 }}
                 className="text-blue-500 hover:underline"
               >
